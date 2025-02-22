@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(45deg, #00c8ff, #ff00a2, #f70000);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.main-menu {
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.main-menu h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #03a9f4;
+}
+
+.menu-button {
+    display: block;
+    padding: 14px 30px;
+    margin: 15px 0;
+    font-size: 20px;
+    color: white;
+    background-color: #03a9f4;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-button:hover {
+    background-color: #0288d1;
+    transform: scale(1.05);
+}
+
+.chart-container {
+    display: none;
+    width: 80vw;
+    max-width: 800px;
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #0288d1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #0277bd;
+    transform: scale(1.05);
+}
+
+.footer {
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin-top: 40px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.footer a {
+    color: #03a9f4;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
