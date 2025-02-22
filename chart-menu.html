@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chart Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-menu">
+        <h1>Ejemplos con Chart.js</h1>
+        <a href="#" class="menu-button" onclick="showChart(1)">Line Chart</a>
+        <a href="#" class="menu-button" onclick="showChart(2)">Bar Chart</a>
+        <a href="#" class="menu-button" onclick="showChart(3)">Radar Chart</a>
+        <a href="#" class="menu-button" onclick="showChart(4)">Doughnut Chart</a>
+        <a href="#" class="menu-button" onclick="showChart(5)">Bubble Chart</a>
+    </div>
+
+    <div id="chart1" class="chart-container">
+        <a href="#" class="back-button" onclick="showMenu()">Volver al menú</a>
+        <canvas id="myChart1"></canvas>
+    </div>
+
+    <div id="chart2" class="chart-container">
+        <a href="#" class="back-button" onclick="showMenu()">Volver al menú</a>
+        <canvas id="myChart2"></canvas>
+    </div>
+
+    <div id="chart3" class="chart-container">
+        <a href="#" class="back-button" onclick="showMenu()">Volver al menú</a>
+        <canvas id="myChart3"></canvas>
+    </div>
+
+    <div id="chart4" class="chart-container">
+        <a href="#" class="back-button" onclick="showMenu()">Volver al menú</a>
+        <canvas id="myChart4"></canvas>
+    </div>
+
+    <div id="chart5" class="chart-container">
+        <a href="#" class="back-button" onclick="showMenu()">Volver al menú</a>
+        <canvas id="myChart5"></canvas>
+    </div>
+
+    <div class="footer">
+        <p>&copy; <span id="year"></span> <a href="#">Angel Flores Casimiro DSM-51</a></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function showChart(num) {
+            document.querySelector('.main-menu').style.display = 'none';
+            document.querySelectorAll('.chart-container').forEach(el => el.style.display = 'none');
+            document.getElementById('chart' + num).style.display = 'block';
+            renderChart(num);
+        }
+
+        function showMenu() {
+            document.querySelector('.main-menu').style.display = 'block';
+            document.querySelectorAll('.chart-container').forEach(el => el.style.display = 'none');
+        }
+
+        function renderChart(num) {
+            let ctx = document.getElementById('myChart' + num).getContext('2d');
+            let chart;
+
+            switch(num) {
+                case 1:
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                            datasets: [{
+                                label: 'Sales 2023',
+                                data: [65, 59, 80, 81, 56, 55],
+                                fill: false,
+                                borderColor: '#03a9f4',
+                                tension: 0.1
+                            }, {
+                                label: 'Sales 2024',
+                                data: [28, 48, 40, 19, 86, 27],
+                                fill: false,
+                                borderColor: '#ff00a2',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    ticks: { color: '#fff' }
+                                },
+                                x: {
+                                    ticks: { color: '#fff' }
+                                }
+                            }
+                        }
+                    });
+                    break;
+
+                case 2:
+                    chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+                            datasets: [{
+                                label: 'Asistencia Semanal',
+                                data: [25, 22, 24, 20, 23],
+                                backgroundColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    '#FFCE56',
+                                    '#4BC0C0',
+                                    '#9966FF'
+                                ],
+                                borderColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    '#FFCE56',
+                                    '#4BC0C0',
+                                    '#9966FF'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: { color: '#fff' }
+                                },
+                                x: {
+                                    ticks: { color: '#fff' }
+                                }
+                            }
+                        }
+                    });
+                    break;
+
+                case 3:
+                    chart = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+                            datasets: [{
+                                label: 'Student A',
+                                data: [65, 59, 90, 81, 56, 55, 40],
+                                fill: true,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                            }, {
+                                label: 'Student B',
+                                data: [28, 48, 40, 19, 96, 27, 100],
+                                fill: true,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                pointBackgroundColor: 'rgb(54, 162, 235)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(54, 162, 235)'
+                            }]
+                        },
+                        options: {
+                            elements: {
+                                line: {
+                                    borderWidth: 3
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            },
+                            scales: {
+                                r: {
+                                    ticks: {
+                                        color: '#fff'
+                                    },
+                                    pointLabels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    break;
+
+                case 4:
+                    chart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+                            datasets: [{
+                                data: [300, 50, 100, 40, 120],
+                                backgroundColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    '#FFCE56',
+                                    '#4BC0C0',
+                                    '#9966FF'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    break;
+
+                case 5:
+                    chart = new Chart(ctx, {
+                        type: 'bubble',
+                        data: {
+                            datasets: [{
+                                label: 'First Dataset',
+                                data: [{
+                                    x: 20,
+                                    y: 30,
+                                    r: 15
+                                }, {
+                                    x: 40,
+                                    y: 10,
+                                    r: 10
+                                }, {
+                                    x: 30,
+                                    y: 20,
+                                    r: 20
+                                }],
+                                backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                            }, {
+                                label: 'Second Dataset',
+                                data: [{
+                                    x: 10,
+                                    y: 20,
+                                    r: 20
+                                }, {
+                                    x: 30,
+                                    y: 40,
+                                    r: 15
+                                }, {
+                                    x: 50,
+                                    y: 30,
+                                    r: 10
+                                }],
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: '#fff'
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    ticks: { color: '#fff' }
+                                },
+                                x: {
+                                    ticks: { color: '#fff' }
+                                }
+                            }
+                        }
+                    });
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
